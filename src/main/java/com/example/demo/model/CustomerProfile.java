@@ -63,5 +63,12 @@ public class CustomerProfile {
     public void setTier(String tier) {
         this.tier = tier;
     }
-    
+    public garage(Long id, String garagename, String address, String contactNumber
+
+this.id=id;
+this.garagename=garagename;
+this.address=address;
+this.contactNumber=contactNumber;
+this.active-active;
+public garage(){
 }
