@@ -1,28 +1,28 @@
-package com.example.demo.model;
+// package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import jakarta.persistence.Id;
 
 
-@Entity
-public class VisitRecord {
+// @Entity
+// public class VisitRecord {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
 
-    private String customerId;
-    private String channel;
+//     private String customerId;
+//     private String channel;
 
-    // No-args constructor
-    public VisitRecord() {
-    }
+//     // No-args constructor
+//     public VisitRecord() {
+//     }
 
-    // Parameterized constructor
-    public VisitRecord(String customerId, String channel) {
-        this.customerId = customerId;
-        this.channel = channel;
-    }
-}
+//     // Parameterized constructor
+//     public VisitRecord(String customerId, String channel) {
+//         this.customerId = customerId;
+//         this.channel = channel;
+//     }
+// }
