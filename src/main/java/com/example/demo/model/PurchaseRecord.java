@@ -54,4 +54,14 @@ public class PurchaseRecord {
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
+     public CustomerProfile (){
+        public CustomerProfile(String customerId,String name,String email,String phone,String tier){
+        this.id = id;
+        this.deviceCode = deviceCode;
+        this.deviceType = deviceType;
+        this.model = model;
+        this.maxAllowedPerEmployee = maxAllowedPerEmployee;
+    }
+        
+    }
 }

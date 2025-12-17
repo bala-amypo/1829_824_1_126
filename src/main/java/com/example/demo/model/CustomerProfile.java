@@ -63,14 +63,4 @@ public class CustomerProfile {
     public void setTier(String tier) {
         this.tier = tier;
     }
-    public CustomerProfile (){
-        this.id = id;
-        this.deviceCode = deviceCode;
-        this.deviceType = deviceType;
-        this.model = model;
-        this.maxAllowedPerEmployee = maxAllowedPerEmployee;
-    }
-    public CustomerProfile(String customerId,String name,String email,String phone,String tier){
-        
-    }
 }
