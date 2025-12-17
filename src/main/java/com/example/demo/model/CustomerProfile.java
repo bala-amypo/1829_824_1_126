@@ -63,14 +63,14 @@ public class CustomerProfile {
     public void setTier(String tier) {
         this.tier = tier;
     }
-    public Customer (Long id,String deviceCode,String deviceType,String model,Integer maxAllowedPerEmployee,Boolean active){
+    public CustomerProfile (){
         this.id = id;
         this.deviceCode = deviceCode;
         this.deviceType = deviceType;
         this.model = model;
         this.maxAllowedPerEmployee = maxAllowedPerEmployee;
     }
-    public DeviceCatalogItem(){
+    public CustomerProfile(String customerId,String name,String email,String phone,String tier){
         
     }
 }
