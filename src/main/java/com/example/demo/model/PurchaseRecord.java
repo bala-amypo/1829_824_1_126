@@ -14,54 +14,16 @@ public class PurchaseRecord {
     private Double amount;
     private String transactionId;
 
-    // getters & setters
-    public Long getId() {
-        return id;
+    // No-args constructor
+    public PurchaseRecord() {
     }
- 
-    public void setId(Long id) {
-        this.id = id;
-    }
- 
-    public String getCustomerId() {
-        return customerId;
-    }
- 
-    public void setCustomerId(String customerId) {
+
+    // Parameterized constructor
+    public PurchaseRecord(String customerId, String productName,
+                          Double amount, String transactionId) {
         this.customerId = customerId;
-    }
- 
-    public String getProductName() {
-        return productName;
-    }
- 
-    public void setProductName(String productName) {
         this.productName = productName;
-    }
- 
-    public Double getAmount() {
-        return amount;
-    }
- 
-    public void setAmount(Double amount) {
         this.amount = amount;
-    }
- 
-    public String getTransactionId() {
-        return transactionId;
-    }
- 
-    public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
-    }
-     public CustomerProfile (){
-        public CustomerProfile(String customerId,String name,String email,String phone,String tier){
-        this.id = id;
-        this.deviceCode = deviceCode;
-        this.deviceType = deviceType;
-        this.model = model;
-        this.maxAllowedPerEmployee = maxAllowedPerEmployee;
-    }
-        
     }
 }

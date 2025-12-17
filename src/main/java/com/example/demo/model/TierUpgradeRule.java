@@ -14,44 +14,16 @@ public class TierUpgradeRule {
     private Double minSpend;
     private Integer minVisits;
 
-    // getters & setters
-    public Long getId() {
-        return id;
+    // No-args constructor
+    public TierUpgradeRule() {
     }
- 
-    public void setId(Long id) {
-        this.id = id;
-    }
- 
-    public String getFromTier() {
-        return fromTier;
-    }
- 
-    public void setFromTier(String fromTier) {
+
+    // Parameterized constructor
+    public TierUpgradeRule(String fromTier, String toTier,
+                           Double minSpend, Integer minVisits) {
         this.fromTier = fromTier;
-    }
- 
-    public String getToTier() {
-        return toTier;
-    }
- 
-    public void setToTier(String toTier) {
         this.toTier = toTier;
-    }
- 
-    public Double getMinSpend() {
-        return minSpend;
-    }
- 
-    public void setMinSpend(Double minSpend) {
         this.minSpend = minSpend;
-    }
- 
-    public Integer getMinVisits() {
-        return minVisits;
-    }
- 
-    public void setMinVisits(Integer minVisits) {
         this.minVisits = minVisits;
     }
 }

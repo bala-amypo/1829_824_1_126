@@ -10,30 +10,15 @@ public class VisitRecord {
     private Long id;
 
     private String customerId;
-    private String channel;   // IN_STORE / DIGITAL
+    private String channel;
 
-    // getters & setters
-    public Long getId() {
-        return id;
+    // No-args constructor
+    public VisitRecord() {
     }
- 
-    public void setId(Long id) {
-        this.id = id;
-    }
- 
-    public String getCustomerId() {
-        return customerId;
-    }
- 
-    public void setCustomerId(String customerId) {
+
+    // Parameterized constructor
+    public VisitRecord(String customerId, String channel) {
         this.customerId = customerId;
-    }
- 
-    public String getChannel() {
-        return channel;
-    }
- 
-    public void setChannel(String channel) {
         this.channel = channel;
     }
 }
