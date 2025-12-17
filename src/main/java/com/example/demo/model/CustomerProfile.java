@@ -63,12 +63,14 @@ public class CustomerProfile {
     public void setTier(String tier) {
         this.tier = tier;
     }
-    public garage(Long id, String garagename, String address, String contactNumber
-
-this.id=id;
-this.garagename=garagename;
-this.address=address;
-this.contactNumber=contactNumber;
-this.active-active;
-public garage(){
+    public Customer (Long id,String deviceCode,String deviceType,String model,Integer maxAllowedPerEmployee,Boolean active){
+        this.id = id;
+        this.deviceCode = deviceCode;
+        this.deviceType = deviceType;
+        this.model = model;
+        this.maxAllowedPerEmployee = maxAllowedPerEmployee;
+    }
+    public DeviceCatalogItem(){
+        
+    }
 }
