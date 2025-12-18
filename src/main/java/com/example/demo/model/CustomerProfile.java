@@ -55,9 +55,9 @@ public class CustomerProfile {
     }
 
     // Parameterized constructor
-    public CustomerProfile(String customerId, String name, String email,
+    public CustomerProfile(String Id, String name, String email,
                            String phone, String tier) {
-        this.customerId = customerId;
+        this.Id = Id;
         this.name = name;
         this.email = email;
         this.phone = phone;
