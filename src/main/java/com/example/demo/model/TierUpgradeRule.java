@@ -24,20 +24,7 @@ public class TierUpgradeRule {
     private Integer minVisits;
     private Boolean active;
 
-    // Constructors
-    public TierUpgradeRule() {
-    }
-
-    public TierUpgradeRule(String fromTier, String toTier,
-                           Double minSpend, Integer minVisits, Boolean active) {
-        this.fromTier = fromTier;
-        this.toTier = toTier;
-        this.minSpend = minSpend;
-        this.minVisits = minVisits;
-        this.active = active;
-    }
-
-    // Getters and Setters
+    // Getters & Setters
     public Long getId() {
         return id;
     }
@@ -79,6 +66,22 @@ public class TierUpgradeRule {
     }
 
     public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    // Constructors (LAST)
+    public TierUpgradeRule() {
+    }
+
+    public TierUpgradeRule(String fromTier,
+                           String toTier,
+                           Double minSpend,
+                           Integer minVisits,
+                           Boolean active) {
+        this.fromTier = fromTier;
+        this.toTier = toTier;
+        this.minSpend = minSpend;
+        this.minVisits = minVisits;
         this.active = active;
     }
 }

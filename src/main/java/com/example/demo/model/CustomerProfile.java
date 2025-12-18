@@ -29,25 +29,8 @@ public class CustomerProfile {
     private String phone;
 
     private String tier;
-
     private Boolean active;
-
     private LocalDateTime createdAt;
-
-    // ✅ ONLY ONE no-arg constructor
-    public CustomerProfile() {
-    }
-
-    // ✅ ONLY ONE parameterized constructor
-    public CustomerProfile(String customerId, String fullName,
-                           String email, String phone, String tier) {
-        this.customerId = customerId;
-        this.fullName = fullName;
-        this.email = email;
-        this.phone = phone;
-        this.tier = tier;
-        this.active = true;
-    }
 
     // Getters & Setters
     public Long getId() {
@@ -106,15 +89,29 @@ public class CustomerProfile {
         return createdAt;
     }
 
-    // Lifecycle method
+    // Constructors (LAST)
+    public CustomerProfile() {
+    }
+
+    public CustomerProfile(String customerId,
+                           String fullName,
+                           String email,
+                           String phone,
+                           String tier,
+                           Boolean active) {
+        this.customerId = customerId;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.tier = tier;
+        this.active = active;
+    }
+
+    // Lifecycle
     @PrePersist
     public void onCreate() {
         this.createdAt = LocalDateTime.now();
-        if (this.tier == null) {
-            this.tier = "BRONZE";
-        }
-        if (this.active == null) {
-            this.active = true;
-        }
+        if (tier == null) tier = "BRONZE";
+        if (active == null) active = true;
     }
 }

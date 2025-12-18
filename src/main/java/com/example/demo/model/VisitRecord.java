@@ -20,17 +20,7 @@ public class VisitRecord {
     private LocalDate visitDate;
     private String channel;
 
-    // Constructors
-    public VisitRecord() {
-    }
-
-    public VisitRecord(Long customerId, LocalDate visitDate, String channel) {
-        this.customerId = customerId;
-        this.visitDate = visitDate;
-        this.channel = channel;
-    }
-
-    // Getters and Setters
+    // Getters & Setters
     public Long getId() {
         return id;
     }
@@ -59,16 +49,26 @@ public class VisitRecord {
         this.channel = channel;
     }
 
+    // Constructors (LAST)
+    public VisitRecord() {
+    }
+
+    public VisitRecord(Long customerId,
+                       LocalDate visitDate,
+                       String channel) {
+        this.customerId = customerId;
+        this.visitDate = visitDate;
+        this.channel = channel;
+    }
+
     // Lifecycle
     @PrePersist
     public void validate() {
+        if (visitDate == null) visitDate = LocalDate.now();
         if (!channel.equals("STORE") &&
             !channel.equals("APP") &&
             !channel.equals("WEB")) {
             throw new IllegalArgumentException("Invalid visit channel");
-        }
-        if (visitDate == null) {
-            visitDate = LocalDate.now();
         }
     }
 }

@@ -22,19 +22,7 @@ public class TierHistoryRecord {
     private String reason;
     private LocalDateTime changedAt;
 
-    // Constructors
-    public TierHistoryRecord() {
-    }
-
-    public TierHistoryRecord(Long customerId, String oldTier,
-                             String newTier, String reason) {
-        this.customerId = customerId;
-        this.oldTier = oldTier;
-        this.newTier = newTier;
-        this.reason = reason;
-    }
-
-    // Getters and Setters
+    // Getters & Setters
     public Long getId() {
         return id;
     }
@@ -73,6 +61,20 @@ public class TierHistoryRecord {
 
     public LocalDateTime getChangedAt() {
         return changedAt;
+    }
+
+    // Constructors (LAST)
+    public TierHistoryRecord() {
+    }
+
+    public TierHistoryRecord(Long customerId,
+                             String oldTier,
+                             String newTier,
+                             String reason) {
+        this.customerId = customerId;
+        this.oldTier = oldTier;
+        this.newTier = newTier;
+        this.reason = reason;
     }
 
     // Lifecycle

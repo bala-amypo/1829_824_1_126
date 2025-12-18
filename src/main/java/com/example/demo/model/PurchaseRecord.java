@@ -21,19 +21,7 @@ public class PurchaseRecord {
     private LocalDate purchaseDate;
     private String storeLocation;
 
-    // Constructors
-    public PurchaseRecord() {
-    }
-
-    public PurchaseRecord(Long customerId, Double amount,
-                          LocalDate purchaseDate, String storeLocation) {
-        this.customerId = customerId;
-        this.amount = amount;
-        this.purchaseDate = purchaseDate;
-        this.storeLocation = storeLocation;
-    }
-
-    // Getters and Setters
+    // Getters & Setters
     public Long getId() {
         return id;
     }
@@ -70,11 +58,25 @@ public class PurchaseRecord {
         this.storeLocation = storeLocation;
     }
 
+    // Constructors (LAST)
+    public PurchaseRecord() {
+    }
+
+    public PurchaseRecord(Long customerId,
+                          Double amount,
+                          LocalDate purchaseDate,
+                          String storeLocation) {
+        this.customerId = customerId;
+        this.amount = amount;
+        this.purchaseDate = purchaseDate;
+        this.storeLocation = storeLocation;
+    }
+
     // Lifecycle
     @PrePersist
     public void validate() {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("Purchase amount must be > 0");
+        if (amount == null || amount <= 0) {
+            throw new IllegalArgumentException("Amount must be greater than zero");
         }
         if (purchaseDate == null) {
             purchaseDate = LocalDate.now();
