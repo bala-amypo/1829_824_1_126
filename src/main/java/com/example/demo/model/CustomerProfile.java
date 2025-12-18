@@ -1,67 +1,115 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "customer_profiles")
 public class CustomerProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String customerId;
-    private String name;
+
+    private String fullName;
+
+    @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
     private String phone;
+
     private String tier;
 
-    // No-args constructor
-    public CustomerProfile() {}
+    private Boolean active;
 
-    // Parameterized constructor
-    public CustomerProfile(String customerId, String name, String email,
-                           String phone, String tier) {
-        this.customerId = customerId;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.tier = tier;
-    }
+    private LocalDateTime createdAt;
 
-    // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getCustomerId() { return customerId; }
-    public void setCustomerId(String customerId) { this.customerId = customerId; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
-
-    public String getTier() { return tier; }
-    public void setTier(String tier) { this.tier = tier; }
-
-    // No-args constructor (required by JPA)
+    // Constructors
     public CustomerProfile() {
     }
 
-    // Parameterized constructor
-    public CustomerProfile(Long Id, , String email,
-                           String phone, String tier) {
-        this.Id = Id;
-        this.name = name;
+    public CustomerProfile(String customerId, String fullName, String email,
+                           String phone, String tier, Boolean active) {
+        this.customerId = customerId;
+        this.fullName = fullName;
         this.email = email;
         this.phone = phone;
         this.tier = tier;
+        this.active = active;
     }
 
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getTier() {
+        return tier;
+    }
+
+    public void setTier(String tier) {
+        this.tier = tier;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    // Lifecycle
+    @PrePersist
+    public void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        if (this.tier == null) this.tier = "BRONZE";
+        if (this.active == null) this.active = true;
+    }
 }
