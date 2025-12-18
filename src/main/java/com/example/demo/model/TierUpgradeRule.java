@@ -5,13 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(
-    name = "tier_upgrade_rules",
-    uniqueConstraints = @UniqueConstraint(columnNames = {"fromTier", "toTier"})
-)
+@Table(name = "tier_upgrade_rules")
 public class TierUpgradeRule {
 
     @Id
@@ -69,7 +65,7 @@ public class TierUpgradeRule {
         this.active = active;
     }
 
-    // Constructors (LAST)
+    // Constructors
     public TierUpgradeRule() {
     }
 

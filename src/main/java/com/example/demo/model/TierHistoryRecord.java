@@ -63,7 +63,7 @@ public class TierHistoryRecord {
         return changedAt;
     }
 
-    // Constructors (LAST)
+    // Constructors
     public TierHistoryRecord() {
     }
 
@@ -77,9 +77,8 @@ public class TierHistoryRecord {
         this.reason = reason;
     }
 
-    // Lifecycle
     @PrePersist
-    public void onChange() {
-        this.changedAt = LocalDateTime.now();
+    public void init() {
+        changedAt = LocalDateTime.now();
     }
 }

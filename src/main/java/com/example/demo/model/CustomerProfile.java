@@ -21,13 +21,8 @@ public class CustomerProfile {
     private String customerId;
 
     private String fullName;
-
-    @Column(unique = true)
     private String email;
-
-    @Column(unique = true)
     private String phone;
-
     private String tier;
     private Boolean active;
     private LocalDateTime createdAt;
@@ -89,7 +84,7 @@ public class CustomerProfile {
         return createdAt;
     }
 
-    // Constructors (LAST)
+    // Constructors
     public CustomerProfile() {
     }
 
@@ -107,10 +102,9 @@ public class CustomerProfile {
         this.active = active;
     }
 
-    // Lifecycle
     @PrePersist
-    public void onCreate() {
-        this.createdAt = LocalDateTime.now();
+    public void init() {
+        createdAt = LocalDateTime.now();
         if (tier == null) tier = "BRONZE";
         if (active == null) active = true;
     }

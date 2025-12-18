@@ -58,7 +58,7 @@ public class PurchaseRecord {
         this.storeLocation = storeLocation;
     }
 
-    // Constructors (LAST)
+    // Constructors
     public PurchaseRecord() {
     }
 
@@ -72,14 +72,13 @@ public class PurchaseRecord {
         this.storeLocation = storeLocation;
     }
 
-    // Lifecycle
     @PrePersist
-    public void validate() {
-        if (amount == null || amount <= 0) {
-            throw new IllegalArgumentException("Amount must be greater than zero");
-        }
+    public void init() {
         if (purchaseDate == null) {
             purchaseDate = LocalDate.now();
+        }
+        if (amount == null) {
+            amount = 0.0;
         }
     }
 }

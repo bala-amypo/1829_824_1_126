@@ -49,7 +49,7 @@ public class VisitRecord {
         this.channel = channel;
     }
 
-    // Constructors (LAST)
+    // Constructors
     public VisitRecord() {
     }
 
@@ -61,14 +61,13 @@ public class VisitRecord {
         this.channel = channel;
     }
 
-    // Lifecycle
     @PrePersist
-    public void validate() {
-        if (visitDate == null) visitDate = LocalDate.now();
-        if (!channel.equals("STORE") &&
-            !channel.equals("APP") &&
-            !channel.equals("WEB")) {
-            throw new IllegalArgumentException("Invalid visit channel");
+    public void init() {
+        if (visitDate == null) {
+            visitDate = LocalDate.now();
+        }
+        if (channel == null) {
+            channel = "STORE";
         }
     }
 }
