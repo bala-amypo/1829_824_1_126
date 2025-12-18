@@ -55,7 +55,7 @@ public class CustomerProfile {
     }
 
     // Parameterized constructor
-    public CustomerProfile(String Id, String name, String email,
+    public CustomerProfile(Long Id, , String email,
                            String phone, String tier) {
         this.Id = Id;
         this.name = name;
