@@ -34,21 +34,22 @@ public class CustomerProfile {
 
     private LocalDateTime createdAt;
 
-    // Constructors
+    // ✅ ONLY ONE no-arg constructor
     public CustomerProfile() {
     }
 
-    public CustomerProfile(String customerId, String fullName, String email,
-                           String phone, String tier, Boolean active) {
+    // ✅ ONLY ONE parameterized constructor
+    public CustomerProfile(String customerId, String fullName,
+                           String email, String phone, String tier) {
         this.customerId = customerId;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
         this.tier = tier;
-        this.active = active;
+        this.active = true;
     }
 
-    // Getters and Setters
+    // Getters & Setters
     public Long getId() {
         return id;
     }
@@ -105,11 +106,15 @@ public class CustomerProfile {
         return createdAt;
     }
 
-    // Lifecycle
+    // Lifecycle method
     @PrePersist
     public void onCreate() {
         this.createdAt = LocalDateTime.now();
-        if (this.tier == null) this.tier = "BRONZE";
-        if (this.active == null) this.active = true;
+        if (this.tier == null) {
+            this.tier = "BRONZE";
+        }
+        if (this.active == null) {
+            this.active = true;
+        }
     }
 }
