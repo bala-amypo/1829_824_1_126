@@ -17,78 +17,47 @@ public class CustomerProfile {
     private String phone;
     private String currentTier;
     private Boolean active = true;
+
     private LocalDateTime createdAt;
 
-    public CustomerProfile() {}
-
-    // 🔹 REQUIRED BY TESTS
-    public boolean isPresent() {
-        return true;
+    public CustomerProfile() {
     }
 
     @PrePersist
-    public void prePersist() {
+    public void onCreate() {
         this.createdAt = LocalDateTime.now();
         if (this.currentTier == null) {
             this.currentTier = "BRONZE";
         }
+        if (this.active == null) {
+            this.active = true;
+        }
     }
 
-    // ===== GETTERS & SETTERS =====
+    // ===== REQUIRED GETTERS & SETTERS =====
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getCustomerId() {
-        return customerId;
-    }
+    public String getCustomerId() { return customerId; }
+    public void setCustomerId(String customerId) { this.customerId = customerId; }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
+    public String getFullName() { return fullName; }
+    public void setFullName(String fullName) { this.fullName = fullName; }
 
-    public String getFullName() {
-        return fullName;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getCurrentTier() { return currentTier; }
+    public void setCurrentTier(String currentTier) { this.currentTier = currentTier; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public Boolean getActive() { return active; }
+    public boolean isActive() { return active != null && active; }
+    public void setActive(Boolean active) { this.active = active; }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getCurrentTier() {
-        return currentTier;
-    }
-
-    public void setCurrentTier(String currentTier) {
-        this.currentTier = currentTier;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }

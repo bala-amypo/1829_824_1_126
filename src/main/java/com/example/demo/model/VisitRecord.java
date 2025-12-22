@@ -11,37 +11,26 @@ public class VisitRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long customerId;
     private LocalDate visitDate;
     private String channel;
 
-    public VisitRecord() {}
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private CustomerProfile customer;
 
-    public Long getId() {
-        return id;
+    public VisitRecord() {
     }
 
-    public Long getCustomerId() {
-        return customerId;
-    }
+    // ===== REQUIRED =====
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
+    public LocalDate getVisitDate() { return visitDate; }
+    public void setVisitDate(LocalDate visitDate) { this.visitDate = visitDate; }
 
-    public LocalDate getVisitDate() {
-        return visitDate;
-    }
+    public String getChannel() { return channel; }
+    public void setChannel(String channel) { this.channel = channel; }
 
-    public void setVisitDate(LocalDate visitDate) {
-        this.visitDate = visitDate;
-    }
-
-    public String getChannel() {
-        return channel;
-    }
-
-    public void setChannel(String channel) {
-        this.channel = channel;
-    }
+    public CustomerProfile getCustomer() { return customer; }
+    public void setCustomer(CustomerProfile customer) { this.customer = customer; }
 }
