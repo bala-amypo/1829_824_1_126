@@ -12,55 +12,25 @@ public class VisitRecord {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
     private CustomerProfile customer;
 
     private LocalDate visitDate;
 
     private String channel;
 
-    // 🔹 NO-ARG CONSTRUCTOR
-    public VisitRecord() {
-    }
+    public VisitRecord() {}
 
-    // 🔹 PARAMETERIZED CONSTRUCTOR
-    public VisitRecord(CustomerProfile customer, LocalDate visitDate, String channel) {
-        this.customer = customer;
-        this.visitDate = visitDate;
-        this.channel = channel;
-    }
+    // ===== REQUIRED GETTERS & SETTERS =====
 
-    // 🔹 REQUIRED GETTERS & SETTERS (MANDATORY)
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public CustomerProfile getCustomer() { return customer; }
+    public void setCustomer(CustomerProfile customer) { this.customer = customer; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public LocalDate getVisitDate() { return visitDate; }
+    public void setVisitDate(LocalDate visitDate) { this.visitDate = visitDate; }
 
-    public CustomerProfile getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerProfile customer) {
-        this.customer = customer;
-    }
-
-    public LocalDate getVisitDate() {
-        return visitDate;
-    }
-
-    public void setVisitDate(LocalDate visitDate) {
-        this.visitDate = visitDate;
-    }
-
-    public String getChannel() {
-        return channel;
-    }
-
-    public void setChannel(String channel) {
-        this.channel = channel;
-    }
+    public String getChannel() { return channel; }
+    public void setChannel(String channel) { this.channel = channel; }
 }

@@ -1,10 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -15,35 +11,31 @@ public class PurchaseRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Double amount;
+    @ManyToOne
+    private CustomerProfile customer;
+
+    private double amount;
+
     private LocalDate purchaseDate;
+
     private String storeLocation;
 
     public PurchaseRecord() {}
 
-    /* ================= REQUIRED BY TESTS ================= */
+    // ===== REQUIRED GETTERS & SETTERS =====
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+    public CustomerProfile getCustomer() { return customer; }
+    public void setCustomer(CustomerProfile customer) { this.customer = customer; }
 
-    public Double getAmount() {
-        return amount;
-    }
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
 
-    public void setPurchaseDate(LocalDate purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
+    public LocalDate getPurchaseDate() { return purchaseDate; }
+    public void setPurchaseDate(LocalDate purchaseDate) { this.purchaseDate = purchaseDate; }
 
-    public void setStoreLocation(String storeLocation) {
-        this.storeLocation = storeLocation;
-    }
-
-    public void setCustomer(CustomerProfile customer) {
-        // dummy method for test compatibility
-    }
+    public String getStoreLocation() { return storeLocation; }
+    public void setStoreLocation(String storeLocation) { this.storeLocation = storeLocation; }
 }
