@@ -11,11 +11,8 @@ public class VisitRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private CustomerProfile customer;
-
+    private Long customerId;
     private LocalDate visitDate;
-
     private String channel;
 
     public VisitRecord() {}
@@ -24,16 +21,12 @@ public class VisitRecord {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public CustomerProfile getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerProfile customer) {
-        this.customer = customer;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public LocalDate getVisitDate() {

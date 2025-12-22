@@ -26,7 +26,13 @@ public class TierHistoryRecord {
         this.reason = reason;
     }
 
-    public TierHistoryRecord(Long customerId, String oldTier, String newTier, String reason, LocalDateTime changedAt) {
+    public TierHistoryRecord(
+            Long customerId,
+            String oldTier,
+            String newTier,
+            String reason,
+            LocalDateTime changedAt) {
+
         this.customerId = customerId;
         this.oldTier = oldTier;
         this.newTier = newTier;
@@ -35,8 +41,10 @@ public class TierHistoryRecord {
     }
 
     @PrePersist
-    public void onCreate() {
-        this.changedAt = LocalDateTime.now();
+    public void prePersist() {
+        if (this.changedAt == null) {
+            this.changedAt = LocalDateTime.now();
+        }
     }
 
     public Long getId() {
