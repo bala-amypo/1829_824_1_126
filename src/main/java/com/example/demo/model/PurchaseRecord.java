@@ -22,20 +22,44 @@ public class PurchaseRecord {
 
     public PurchaseRecord() {}
 
-    // ===== REQUIRED GETTERS & SETTERS =====
+    // REQUIRED BY TESTS
+    public Long getId() {
+        return id;
+    }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public CustomerProfile getCustomer() { return customer; }
-    public void setCustomer(CustomerProfile customer) { this.customer = customer; }
+    public CustomerProfile getCustomer() {
+        return customer;
+    }
 
-    public double getAmount() { return amount; }
-    public void setAmount(double amount) { this.amount = amount; }
+    public void setCustomer(CustomerProfile customer) {
+        this.customer = customer;
+    }
 
-    public LocalDate getPurchaseDate() { return purchaseDate; }
-    public void setPurchaseDate(LocalDate purchaseDate) { this.purchaseDate = purchaseDate; }
+    public double getAmount() {
+        return amount;
+    }
 
-    public String getStoreLocation() { return storeLocation; }
-    public void setStoreLocation(String storeLocation) { this.storeLocation = storeLocation; }
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public LocalDate getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public String getStoreLocation() {
+        return storeLocation;
+    }
+
+    public void setStoreLocation(String storeLocation) {
+        this.storeLocation = storeLocation;
+    }
 }

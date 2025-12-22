@@ -11,19 +11,12 @@ public class TierUpgradeRule {
     private Long id;
 
     private String fromTier;
-
     private String toTier;
-
     private double minSpend;
-
     private int minVisits;
-
     private boolean active = true;
 
-    public TierUpgradeRule() {
-    }
-
-    // ---------- GETTERS & SETTERS ----------
+    public TierUpgradeRule() {}
 
     public Long getId() {
         return id;
@@ -65,16 +58,11 @@ public class TierUpgradeRule {
         this.minVisits = minVisits;
     }
 
-    public boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    // ❗ TEST CALLS isPresent()
-    public boolean isPresent() {
-        return id != null;
     }
 }
