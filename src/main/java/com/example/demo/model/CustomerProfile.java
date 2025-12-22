@@ -1,12 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,13 +15,41 @@ public class CustomerProfile {
     private String customerId;
 
     private String fullName;
+
+    @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
     private String phone;
-    private String tier;
-    private Boolean active;
+
+    // 🔴 REQUIRED BY SERVICE IMPL
+    private String currentTier;
+
+    private Boolean active = true;
+
     private LocalDateTime createdAt;
 
-    // Getters & Setters
+    public CustomerProfile() {
+    }
+
+    public CustomerProfile(String customerId, String fullName, String email,
+                           String phone, String currentTier, Boolean active) {
+        this.customerId = customerId;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.currentTier = currentTier;
+        this.active = active;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        if (this.currentTier == null) {
+            this.currentTier = "BRONZE";
+        }
+    }
+
     public Long getId() {
         return id;
     }
@@ -64,12 +86,14 @@ public class CustomerProfile {
         this.phone = phone;
     }
 
-    public String getTier() {
-        return tier;
+    // ✅ REQUIRED METHOD
+    public String getCurrentTier() {
+        return currentTier;
     }
 
-    public void setTier(String tier) {
-        this.tier = tier;
+    // ✅ REQUIRED METHOD
+    public void setCurrentTier(String currentTier) {
+        this.currentTier = currentTier;
     }
 
     public Boolean getActive() {
@@ -82,30 +106,5 @@ public class CustomerProfile {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
-    }
-
-    // Constructors
-    public CustomerProfile() {
-    }
-
-    public CustomerProfile(String customerId,
-                           String fullName,
-                           String email,
-                           String phone,
-                           String tier,
-                           Boolean active) {
-        this.customerId = customerId;
-        this.fullName = fullName;
-        this.email = email;
-        this.phone = phone;
-        this.tier = tier;
-        this.active = active;
-    }
-
-    @PrePersist
-    public void init() {
-        createdAt = LocalDateTime.now();
-        if (tier == null) tier = "BRONZE";
-        if (active == null) active = true;
     }
 }

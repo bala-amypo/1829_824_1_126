@@ -1,11 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -17,10 +12,20 @@ public class VisitRecord {
     private Long id;
 
     private Long customerId;
+
     private LocalDate visitDate;
+
     private String channel;
 
-    // Getters & Setters
+    public VisitRecord() {
+    }
+
+    public VisitRecord(Long customerId, LocalDate visitDate, String channel) {
+        this.customerId = customerId;
+        this.visitDate = visitDate;
+        this.channel = channel;
+    }
+
     public Long getId() {
         return id;
     }
@@ -29,45 +34,11 @@ public class VisitRecord {
         return customerId;
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
-
     public LocalDate getVisitDate() {
         return visitDate;
     }
 
-    public void setVisitDate(LocalDate visitDate) {
-        this.visitDate = visitDate;
-    }
-
     public String getChannel() {
         return channel;
-    }
-
-    public void setChannel(String channel) {
-        this.channel = channel;
-    }
-
-    // Constructors
-    public VisitRecord() {
-    }
-
-    public VisitRecord(Long customerId,
-                       LocalDate visitDate,
-                       String channel) {
-        this.customerId = customerId;
-        this.visitDate = visitDate;
-        this.channel = channel;
-    }
-
-    @PrePersist
-    public void init() {
-        if (visitDate == null) {
-            visitDate = LocalDate.now();
-        }
-        if (channel == null) {
-            channel = "STORE";
-        }
     }
 }
