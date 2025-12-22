@@ -1,35 +1,18 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "purchase_records")
 public class PurchaseRecord {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long customerId;
-
-    private Double amount;
-
+    private CustomerProfile customer;
+    private double amount;
     private LocalDate purchaseDate;
-
     private String storeLocation;
 
-    public PurchaseRecord() {
-    }
+    public PurchaseRecord() {}
 
-    public PurchaseRecord(Long customerId, Double amount, LocalDate purchaseDate, String storeLocation) {
-        this.customerId = customerId;
-        this.amount = amount;
-        this.purchaseDate = purchaseDate;
-        this.storeLocation = storeLocation;
-    }
-
-    // 🔑 REQUIRED METHODS
+    /* ---------- REQUIRED GETTERS & SETTERS ---------- */
 
     public Long getId() {
         return id;
@@ -39,19 +22,19 @@ public class PurchaseRecord {
         this.id = id;
     }
 
-    public Long getCustomerId() {
-        return customerId;
+    public CustomerProfile getCustomer() {
+        return customer;
     }
 
-    public void setCustomer(Long customerId) {
-        this.customerId = customerId;
+    public void setCustomer(CustomerProfile customer) {
+        this.customer = customer;
     }
 
-    public Double getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

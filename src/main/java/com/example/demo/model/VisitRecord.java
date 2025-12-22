@@ -1,32 +1,17 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "visit_records")
 public class VisitRecord {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long customerId;
-
+    private CustomerProfile customer;
     private LocalDate visitDate;
-
     private String channel;
 
-    public VisitRecord() {
-    }
+    public VisitRecord() {}
 
-    public VisitRecord(Long customerId, LocalDate visitDate, String channel) {
-        this.customerId = customerId;
-        this.visitDate = visitDate;
-        this.channel = channel;
-    }
-
-    // 🔑 REQUIRED METHODS
+    /* ---------- REQUIRED GETTERS & SETTERS ---------- */
 
     public Long getId() {
         return id;
@@ -36,12 +21,12 @@ public class VisitRecord {
         this.id = id;
     }
 
-    public Long getCustomerId() {
-        return customerId;
+    public CustomerProfile getCustomer() {
+        return customer;
     }
 
-    public void setCustomer(Long customerId) {
-        this.customerId = customerId;
+    public void setCustomer(CustomerProfile customer) {
+        this.customer = customer;
     }
 
     public LocalDate getVisitDate() {
