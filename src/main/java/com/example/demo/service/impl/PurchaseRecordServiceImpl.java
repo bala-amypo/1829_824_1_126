@@ -1,13 +1,12 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.PurchaseRecord;
+import com.example.demo.model.PurchaseRecord;
 import com.example.demo.repository.PurchaseRecordRepository;
 import com.example.demo.service.PurchaseRecordService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class PurchaseRecordServiceImpl implements PurchaseRecordService {
@@ -20,9 +19,11 @@ public class PurchaseRecordServiceImpl implements PurchaseRecordService {
 
     @Override
     public PurchaseRecord recordPurchase(PurchaseRecord purchase) {
+
         if (purchase.getAmount() <= 0) {
             throw new IllegalArgumentException("Amount must be positive");
         }
+
         return purchaseRecordRepository.save(purchase);
     }
 

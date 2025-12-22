@@ -3,11 +3,10 @@ package com.example.demo.service.impl;
 import com.example.demo.model.CustomerProfile;
 import com.example.demo.repository.CustomerProfileRepository;
 import com.example.demo.service.CustomerProfileService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerProfileServiceImpl implements CustomerProfileService {
@@ -20,9 +19,11 @@ public class CustomerProfileServiceImpl implements CustomerProfileService {
 
     @Override
     public CustomerProfile createCustomer(CustomerProfile customer) {
-        if (customerProfileRepository.findByCustomerId(customer.getCustomerId()).isPresent()) {
-            throw new IllegalArgumentException("Customer ID already exists");
-        }
+
+        customerProfileRepository.findByCustomerId(customer.getCustomerId())
+                .ifPresent(c -> {
+                    throw new IllegalArgumentException("Customer ID already exists");
+                });
 
         if (customer.getCurrentTier() == null) {
             customer.setCurrentTier("BRONZE");
