@@ -12,7 +12,8 @@ import java.util.Set;
 @Service
 public class VisitRecordServiceImpl implements VisitRecordService {
 
-    private static final Set<String> VALID_CHANNELS = Set.of("STORE", "APP", "WEB");
+    private static final Set<String> VALID_CHANNELS =
+            Set.of("STORE", "APP", "WEB");
 
     private final VisitRecordRepository visitRecordRepository;
 

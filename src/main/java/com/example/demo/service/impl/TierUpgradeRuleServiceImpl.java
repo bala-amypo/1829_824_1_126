@@ -21,7 +21,7 @@ public class TierUpgradeRuleServiceImpl implements TierUpgradeRuleService {
     public TierUpgradeRule createRule(TierUpgradeRule rule) {
 
         if (rule.getMinSpend() < 0 || rule.getMinVisits() < 0) {
-            throw new IllegalArgumentException("Minimum values cannot be negative");
+            throw new IllegalArgumentException("Minimum values must be non-negative");
         }
 
         return tierUpgradeRuleRepository.save(rule);
