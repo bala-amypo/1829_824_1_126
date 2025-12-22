@@ -11,31 +11,19 @@ public class TierUpgradeRule {
     private Long id;
 
     private String fromTier;
-    private String toTier;
-    private Double minSpend;
-    private Integer minVisits;
-    private Boolean active = true;
 
-    // 🔹 NO-ARG CONSTRUCTOR
+    private String toTier;
+
+    private double minSpend;
+
+    private int minVisits;
+
+    private boolean active = true;
+
     public TierUpgradeRule() {
     }
 
-    // 🔹 PARAMETERIZED CONSTRUCTOR
-    public TierUpgradeRule(
-            String fromTier,
-            String toTier,
-            Double minSpend,
-            Integer minVisits,
-            Boolean active) {
-
-        this.fromTier = fromTier;
-        this.toTier = toTier;
-        this.minSpend = minSpend;
-        this.minVisits = minVisits;
-        this.active = active;
-    }
-
-    // 🔹 REQUIRED GETTERS & SETTERS (MANDATORY)
+    // ---------- GETTERS & SETTERS ----------
 
     public Long getId() {
         return id;
@@ -61,27 +49,32 @@ public class TierUpgradeRule {
         this.toTier = toTier;
     }
 
-    public Double getMinSpend() {
+    public double getMinSpend() {
         return minSpend;
     }
 
-    public void setMinSpend(Double minSpend) {
+    public void setMinSpend(double minSpend) {
         this.minSpend = minSpend;
     }
 
-    public Integer getMinVisits() {
+    public int getMinVisits() {
         return minVisits;
     }
 
-    public void setMinVisits(Integer minVisits) {
+    public void setMinVisits(int minVisits) {
         this.minVisits = minVisits;
     }
 
-    public Boolean getActive() {
+    public boolean getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
+    }
+
+    // ❗ TEST CALLS isPresent()
+    public boolean isPresent() {
+        return id != null;
     }
 }

@@ -1,10 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,12 +12,17 @@ public class TierHistoryRecord {
     private Long id;
 
     private Long customerId;
+
     private String oldTier;
+
     private String newTier;
+
     private String reason;
+
     private LocalDateTime changedAt;
 
-    public TierHistoryRecord() {}
+    public TierHistoryRecord() {
+    }
 
     public TierHistoryRecord(
             Long customerId,
@@ -35,5 +36,36 @@ public class TierHistoryRecord {
         this.newTier = newTier;
         this.reason = reason;
         this.changedAt = changedAt;
+    }
+
+    // ---------- GETTERS ----------
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public String getOldTier() {
+        return oldTier;
+    }
+
+    public String getNewTier() {
+        return newTier;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public LocalDateTime getChangedAt() {
+        return changedAt;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.changedAt = LocalDateTime.now();
     }
 }
