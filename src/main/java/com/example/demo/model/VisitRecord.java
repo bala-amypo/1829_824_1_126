@@ -1,10 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -15,26 +11,56 @@ public class VisitRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private CustomerProfile customer;
+
     private LocalDate visitDate;
+
     private String channel;
 
-    public VisitRecord() {}
+    // 🔹 NO-ARG CONSTRUCTOR
+    public VisitRecord() {
+    }
 
-    /* ================= REQUIRED BY TESTS ================= */
+    // 🔹 PARAMETERIZED CONSTRUCTOR
+    public VisitRecord(CustomerProfile customer, LocalDate visitDate, String channel) {
+        this.customer = customer;
+        this.visitDate = visitDate;
+        this.channel = channel;
+    }
 
-    public void setId(long id) {
+    // 🔹 REQUIRED GETTERS & SETTERS (MANDATORY)
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public CustomerProfile getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerProfile customer) {
+        this.customer = customer;
+    }
+
+    public LocalDate getVisitDate() {
+        return visitDate;
     }
 
     public void setVisitDate(LocalDate visitDate) {
         this.visitDate = visitDate;
     }
 
-    public void setChannel(String channel) {
-        this.channel = channel;
+    public String getChannel() {
+        return channel;
     }
 
-    public void setCustomer(CustomerProfile customer) {
-        // dummy method for test compatibility
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 }

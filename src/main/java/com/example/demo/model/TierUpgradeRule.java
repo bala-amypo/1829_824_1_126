@@ -1,10 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tier_upgrade_rules")
@@ -20,15 +16,32 @@ public class TierUpgradeRule {
     private Integer minVisits;
     private Boolean active = true;
 
-    public TierUpgradeRule() {}
+    // 🔹 NO-ARG CONSTRUCTOR
+    public TierUpgradeRule() {
+    }
 
-    /* ================= REQUIRED BY SERVICE ================= */
+    // 🔹 PARAMETERIZED CONSTRUCTOR
+    public TierUpgradeRule(
+            String fromTier,
+            String toTier,
+            Double minSpend,
+            Integer minVisits,
+            Boolean active) {
+
+        this.fromTier = fromTier;
+        this.toTier = toTier;
+        this.minSpend = minSpend;
+        this.minVisits = minVisits;
+        this.active = active;
+    }
+
+    // 🔹 REQUIRED GETTERS & SETTERS (MANDATORY)
 
     public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,10 +83,5 @@ public class TierUpgradeRule {
 
     public void setActive(Boolean active) {
         this.active = active;
-    }
-
-    /* Tests incorrectly call isPresent() */
-    public boolean isPresent() {
-        return true;
     }
 }
