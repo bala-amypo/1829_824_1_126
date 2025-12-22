@@ -12,19 +12,25 @@ public class TierHistoryRecord {
     private Long id;
 
     private Long customerId;
-
     private String oldTier;
-
     private String newTier;
-
     private String reason;
-
     private LocalDateTime changedAt;
 
     public TierHistoryRecord() {
     }
 
-    // ✅ REQUIRED BY SERVICE IMPL
+    public TierHistoryRecord(Long customerId,
+                             String oldTier,
+                             String newTier,
+                             String reason) {
+        this.customerId = customerId;
+        this.oldTier = oldTier;
+        this.newTier = newTier;
+        this.reason = reason;
+    }
+
+    // ✅ REQUIRED BY SERVICE
     public TierHistoryRecord(Long customerId,
                              String oldTier,
                              String newTier,
@@ -38,10 +44,8 @@ public class TierHistoryRecord {
     }
 
     @PrePersist
-    protected void onChange() {
-        if (this.changedAt == null) {
-            this.changedAt = LocalDateTime.now();
-        }
+    public void onCreate() {
+        this.changedAt = LocalDateTime.now();
     }
 
     public Long getId() {
