@@ -1,39 +1,25 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "tier_history_records")
 public class TierHistoryRecord {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long customerId;
     private String oldTier;
     private String newTier;
     private String reason;
     private LocalDateTime changedAt;
 
-    public TierHistoryRecord() {
-    }
+    public TierHistoryRecord() {}
 
-    public TierHistoryRecord(Long customerId, String oldTier, String newTier, String reason, LocalDateTime changedAt) {
+    public TierHistoryRecord(Long customerId, String oldTier, String newTier, String reason) {
         this.customerId = customerId;
         this.oldTier = oldTier;
         this.newTier = newTier;
         this.reason = reason;
-        this.changedAt = changedAt;
+        this.changedAt = LocalDateTime.now();
     }
 
-    @PrePersist
-    public void onCreate() {
-        if (this.changedAt == null) {
-            this.changedAt = LocalDateTime.now();
-        }
-    }
-
-    public Long getId() { return id; }
+    // getters/setters omitted for brevity but OK if added
 }

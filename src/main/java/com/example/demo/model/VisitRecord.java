@@ -1,36 +1,54 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "visit_records")
 public class VisitRecord {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private Long customerId;
     private LocalDate visitDate;
     private String channel;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
     private CustomerProfile customer;
 
-    public VisitRecord() {
+    public VisitRecord() {}
+
+    public Long getId() {
+        return id;
     }
 
-    // ===== REQUIRED =====
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public LocalDate getVisitDate() { return visitDate; }
-    public void setVisitDate(LocalDate visitDate) { this.visitDate = visitDate; }
+    public Long getCustomerId() {
+        return customerId;
+    }
 
-    public String getChannel() { return channel; }
-    public void setChannel(String channel) { this.channel = channel; }
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
 
-    public CustomerProfile getCustomer() { return customer; }
-    public void setCustomer(CustomerProfile customer) { this.customer = customer; }
+    public LocalDate getVisitDate() {
+        return visitDate;
+    }
+
+    public void setVisitDate(LocalDate visitDate) {
+        this.visitDate = visitDate;
+    }
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
+
+    public CustomerProfile getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerProfile customer) {
+        this.customer = customer;
+    }
 }
