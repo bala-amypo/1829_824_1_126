@@ -26,19 +26,37 @@ public class VisitRecord {
         this.channel = channel;
     }
 
+    // 🔑 REQUIRED METHODS
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getCustomerId() {
         return customerId;
     }
 
+    public void setCustomer(Long customerId) {
+        this.customerId = customerId;
+    }
+
     public LocalDate getVisitDate() {
         return visitDate;
     }
 
+    public void setVisitDate(LocalDate visitDate) {
+        this.visitDate = visitDate;
+    }
+
     public String getChannel() {
         return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 }
