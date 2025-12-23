@@ -1,6 +1,11 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,9 +24,8 @@ public class CustomerProfile {
     private boolean active = true;
     private LocalDateTime createdAt;
 
-    public CustomerProfile() {}
-
-
+    public CustomerProfile() {
+    }
 
     public Long getId() {
         return id;
