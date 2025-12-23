@@ -1,54 +1,39 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "visit_records")
 public class VisitRecord {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private Long customerId;
+
     private LocalDate visitDate;
+
+    @Column(nullable = false)
     private String channel;
-    private CustomerProfile customer;
 
-    public VisitRecord() {}
-
-    public Long getId() {
-        return id;
+    public VisitRecord() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
+    public VisitRecord(Long customerId, LocalDate visitDate, String channel) {
         this.customerId = customerId;
-    }
-
-    public LocalDate getVisitDate() {
-        return visitDate;
-    }
-
-    public void setVisitDate(LocalDate visitDate) {
         this.visitDate = visitDate;
-    }
-
-    public String getChannel() {
-        return channel;
-    }
-
-    public void setChannel(String channel) {
         this.channel = channel;
     }
 
-    public CustomerProfile getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerProfile customer) {
-        this.customer = customer;
-    }
+    // Getters and Setters
+    public Long getId() { return id; }
+    public Long getCustomerId() { return customerId; }
+    public void setCustomerId(Long customerId) { this.customerId = customerId; }
+    public LocalDate getVisitDate() { return visitDate; }
+    public void setVisitDate(LocalDate visitDate) { this.visitDate = visitDate; }
+    public String getChannel() { return channel; }
+    public void setChannel(String channel) { this.channel = channel; }
 }
