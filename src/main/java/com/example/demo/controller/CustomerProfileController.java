@@ -10,41 +10,45 @@ import java.util.List;
 @RequestMapping("/api/customers")
 public class CustomerProfileController {
 
-    private final CustomerProfileService service;
+    private final CustomerProfileService customerProfileService;
 
-    public CustomerProfileController(CustomerProfileService service) {
-        this.service = service;
+    public CustomerProfileController(CustomerProfileService customerProfileService) {
+        this.customerProfileService = customerProfileService;
     }
 
     @PostMapping
     public CustomerProfile createCustomer(@RequestBody CustomerProfile customer) {
-        return service.createCustomer(customer);
+        return customerProfileService.createCustomer(customer);
     }
 
     @GetMapping("/{id}")
     public CustomerProfile getCustomerById(@PathVariable Long id) {
-        return service.getCustomerById(id);
+        return customerProfileService.getCustomerById(id);
+    }
+
+    @GetMapping("/lookup/{customerId}")
+    public CustomerProfile getCustomerByCustomerId(@PathVariable String customerId) {
+        return customerProfileService.findByCustomerId(customerId);
     }
 
     @GetMapping
     public List<CustomerProfile> getAllCustomers() {
-        return service.getAllCustomers();
-    }
-
-    @GetMapping("/lookup/{customerId}")
-    public CustomerProfile getByCustomerId(@PathVariable String customerId) {
-        return service.findByCustomerId(customerId);
+        return customerProfileService.getAllCustomers();
     }
 
     @PutMapping("/{id}/tier")
-    public CustomerProfile updateTier(@PathVariable Long id,
-                                      @RequestParam String newTier) {
-        return service.updateTier(id, newTier);
+    public CustomerProfile updateTier(
+            @PathVariable Long id,
+            @RequestParam String newTier) {
+
+        return customerProfileService.updateTier(id, newTier);
     }
 
     @PutMapping("/{id}/status")
-    public CustomerProfile updateStatus(@PathVariable Long id,
-                                        @RequestParam boolean active) {
-        return service.updateStatus(id, active);
+    public CustomerProfile updateStatus(
+            @PathVariable Long id,
+            @RequestParam boolean active) {
+
+        return customerProfileService.updateStatus(id, active);
     }
 }

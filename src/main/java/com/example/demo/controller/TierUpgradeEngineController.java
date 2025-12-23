@@ -10,24 +10,24 @@ import java.util.List;
 @RequestMapping("/api/tier-engine")
 public class TierUpgradeEngineController {
 
-    private final TierUpgradeEngineService service;
+    private final TierUpgradeEngineService tierUpgradeEngineService;
 
-    public TierUpgradeEngineController(TierUpgradeEngineService service) {
-        this.service = service;
+    public TierUpgradeEngineController(TierUpgradeEngineService tierUpgradeEngineService) {
+        this.tierUpgradeEngineService = tierUpgradeEngineService;
     }
 
     @PostMapping("/evaluate/{customerId}")
-    public TierHistoryRecord evaluateTier(@PathVariable Long customerId) {
-        return service.evaluateAndUpgradeTier(customerId);
+    public TierHistoryRecord evaluate(@PathVariable Long customerId) {
+        return tierUpgradeEngineService.evaluateAndUpgradeTier(customerId);
     }
 
     @GetMapping("/history/{customerId}")
     public List<TierHistoryRecord> getHistoryByCustomer(@PathVariable Long customerId) {
-        return service.getHistoryByCustomer(customerId);
+        return tierUpgradeEngineService.getHistoryByCustomer(customerId);
     }
 
     @GetMapping
     public List<TierHistoryRecord> getAllHistory() {
-        return service.getAllHistory();
+        return tierUpgradeEngineService.getAllHistory();
     }
 }

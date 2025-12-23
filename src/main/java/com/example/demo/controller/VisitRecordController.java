@@ -10,29 +10,29 @@ import java.util.List;
 @RequestMapping("/api/visits")
 public class VisitRecordController {
 
-    private final VisitRecordService service;
+    private final VisitRecordService visitRecordService;
 
-    public VisitRecordController(VisitRecordService service) {
-        this.service = service;
+    public VisitRecordController(VisitRecordService visitRecordService) {
+        this.visitRecordService = visitRecordService;
     }
 
     @PostMapping
     public VisitRecord recordVisit(@RequestBody VisitRecord visit) {
-        return service.recordVisit(visit);
+        return visitRecordService.recordVisit(visit);
     }
 
     @GetMapping("/{id}")
     public VisitRecord getVisitById(@PathVariable Long id) {
-        return service.getVisitById(id);
-    }
-
-    @GetMapping
-    public List<VisitRecord> getAllVisits() {
-        return service.getAllVisits();
+        return visitRecordService.getVisitById(id);
     }
 
     @GetMapping("/customer/{customerId}")
     public List<VisitRecord> getVisitsByCustomer(@PathVariable Long customerId) {
-        return service.getVisitsByCustomer(customerId);
+        return visitRecordService.getVisitsByCustomer(customerId);
+    }
+
+    @GetMapping
+    public List<VisitRecord> getAllVisits() {
+        return visitRecordService.getAllVisits();
     }
 }

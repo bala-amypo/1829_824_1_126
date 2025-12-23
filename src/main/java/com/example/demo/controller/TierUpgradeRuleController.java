@@ -10,36 +10,40 @@ import java.util.List;
 @RequestMapping("/api/tier-rules")
 public class TierUpgradeRuleController {
 
-    private final TierUpgradeRuleService service;
+    private final TierUpgradeRuleService tierUpgradeRuleService;
 
-    public TierUpgradeRuleController(TierUpgradeRuleService service) {
-        this.service = service;
+    public TierUpgradeRuleController(TierUpgradeRuleService tierUpgradeRuleService) {
+        this.tierUpgradeRuleService = tierUpgradeRuleService;
     }
 
     @PostMapping
     public TierUpgradeRule createRule(@RequestBody TierUpgradeRule rule) {
-        return service.createRule(rule);
+        return tierUpgradeRuleService.createRule(rule);
     }
 
     @PutMapping("/{id}")
-    public TierUpgradeRule updateRule(@PathVariable Long id,
-                                      @RequestBody TierUpgradeRule rule) {
-        return service.updateRule(id, rule);
-    }
+    public TierUpgradeRule updateRule(
+            @PathVariable Long id,
+            @RequestBody TierUpgradeRule rule) {
 
-    @GetMapping
-    public List<TierUpgradeRule> getAllRules() {
-        return service.getAllRules();
+        return tierUpgradeRuleService.updateRule(id, rule);
     }
 
     @GetMapping("/active")
     public List<TierUpgradeRule> getActiveRules() {
-        return service.getActiveRules();
+        return tierUpgradeRuleService.getActiveRules();
     }
 
     @GetMapping("/lookup")
-    public TierUpgradeRule getRule(@RequestParam String fromTier,
-                                   @RequestParam String toTier) {
-        return service.getRule(fromTier, toTier);
+    public TierUpgradeRule getRule(
+            @RequestParam String fromTier,
+            @RequestParam String toTier) {
+
+        return tierUpgradeRuleService.getRule(fromTier, toTier);
+    }
+
+    @GetMapping
+    public List<TierUpgradeRule> getAllRules() {
+        return tierUpgradeRuleService.getAllRules();
     }
 }
