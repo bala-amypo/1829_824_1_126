@@ -1,10 +1,15 @@
+package com.example.demo.service;
+
+import com.example.demo.entity.PurchaseRecord;
+import java.util.List;
+
 public interface PurchaseRecordService {
 
-    PurchaseRecord recordPurchase(PurchaseRecord purchase);
+    PurchaseRecord create(PurchaseRecord purchaseRecord);
 
-    List<PurchaseRecord> getPurchasesByCustomer(Long customerId);
+    List<PurchaseRecord> getByCustomerId(Long customerId);
 
-    List<PurchaseRecord> getAllPurchases();
+    List<PurchaseRecord> getAll();
 
-    PurchaseRecord getPurchaseById(Long id);
+    PurchaseRecord getById(Long id);
 }
