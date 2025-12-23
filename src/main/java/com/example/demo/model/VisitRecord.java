@@ -1,6 +1,13 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+
 import java.time.LocalDate;
 
 @Entity
@@ -18,9 +25,8 @@ public class VisitRecord {
     @JoinColumn(name = "customer_id")
     private CustomerProfile customer;
 
-    public VisitRecord() {}
-
-    // ---------- REQUIRED GETTERS / SETTERS ----------
+    public VisitRecord() {
+    }
 
     public Long getId() {
         return id;
