@@ -1,8 +1,10 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.CustomerProfile;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CustomerProfileRepository;
 import com.example.demo.service.CustomerProfileService;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,28 +19,49 @@ public class CustomerProfileServiceImpl implements CustomerProfileService {
     }
 
     @Override
-    public CustomerProfile create(CustomerProfile customerProfile) {
-        return repository.save(customerProfile);
+    public CustomerProfile createCustomer(CustomerProfile customer) {
+
+        if (repository.findByCustomerId(customer.getCustomerId()).isPresent()) {
+            throw new IllegalArgumentException("Customer ID already exists");
+        }
+
+        if (customer.getCurrentTier() == null) {
+            customer.setCurrentTier("BRONZE");
+        }
+
+        return repository.save(customer);
     }
 
     @Override
-    public CustomerProfile getById(Long id) {
-        return repository.findById(id).orElse(null);
+    public CustomerProfile getCustomerById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Customer not found"));
     }
 
     @Override
-    public List<CustomerProfile> getAll() {
+    public CustomerProfile findByCustomerId(String customerId) {
+        return repository.findByCustomerId(customerId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Customer not found"));
+    }
+
+    @Override
+    public List<CustomerProfile> getAllCustomers() {
         return repository.findAll();
     }
 
     @Override
-    public CustomerProfile update(Long id, CustomerProfile customerProfile) {
-        customerProfile.setId(id);
-        return repository.save(customerProfile);
+    public CustomerProfile updateTier(Long id, String newTier) {
+        CustomerProfile customer = getCustomerById(id);
+        customer.setCurrentTier(newTier);
+        return repository.save(customer);
     }
 
     @Override
-    public void delete(Long id) {
-        repository.deleteById(id);
+    public CustomerProfile updateStatus(Long id, boolean active) {
+        CustomerProfile customer = getCustomerById(id);
+        customer.setActive(active);
+        return repository.save(customer);
     }
 }
