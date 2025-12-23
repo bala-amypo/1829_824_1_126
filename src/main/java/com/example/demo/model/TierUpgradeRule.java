@@ -1,6 +1,10 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "tier_upgrade_rules")
@@ -16,9 +20,8 @@ public class TierUpgradeRule {
     private Integer minVisits;
     private Boolean active = true;
 
-    public TierUpgradeRule() {}
-
-    // ---------- REQUIRED GETTERS / SETTERS ----------
+    public TierUpgradeRule() {
+    }
 
     public Long getId() {
         return id;
