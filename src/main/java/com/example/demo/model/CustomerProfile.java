@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "customer_profiles")
@@ -10,15 +11,38 @@ public class CustomerProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String customerId;
-    private String name;
+
+    private String fullName;
+
+    @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
+    private String phone;
+
     private String currentTier;
+
+    private Boolean active = true;
+
+    private LocalDateTime createdAt;
 
     public CustomerProfile() {
     }
 
-    // getters & setters (INSIDE CLASS)
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        if (this.currentTier == null) {
+            this.currentTier = "BRONZE";
+        }
+        if (this.active == null) {
+            this.active = true;
+        }
+    }
+
+    // ===== GETTERS & SETTERS =====
 
     public Long getId() {
         return id;
@@ -36,12 +60,12 @@ public class CustomerProfile {
         this.customerId = customerId;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
@@ -52,11 +76,35 @@ public class CustomerProfile {
         this.email = email;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getCurrentTier() {
         return currentTier;
     }
 
     public void setCurrentTier(String currentTier) {
         this.currentTier = currentTier;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
