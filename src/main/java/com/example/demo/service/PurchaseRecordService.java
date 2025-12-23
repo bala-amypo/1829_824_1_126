@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface PurchaseRecordService {
 
-    PurchaseRecord create(PurchaseRecord purchaseRecord);
+    PurchaseRecord recordPurchase(PurchaseRecord purchase);
 
-    List<PurchaseRecord> getByCustomerId(Long customerId);
+    List<PurchaseRecord> getPurchasesByCustomer(Long customerId);
 
-    List<PurchaseRecord> getAll();
+    List<PurchaseRecord> getAllPurchases();
 
-    PurchaseRecord getById(Long id);
+    PurchaseRecord getPurchaseById(Long id);
 }

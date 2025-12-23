@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface TierUpgradeRuleService {
 
-    TierUpgradeRule create(TierUpgradeRule rule);
+    TierUpgradeRule createRule(TierUpgradeRule rule);
 
-    TierUpgradeRule update(Long id, TierUpgradeRule rule);
+    TierUpgradeRule updateRule(Long id, TierUpgradeRule updatedRule);
 
-    TierUpgradeRule getById(Long id);
+    List<TierUpgradeRule> getActiveRules();
 
-    List<TierUpgradeRule> getAll();
+    TierUpgradeRule getRule(String fromTier, String toTier);
 
-    void delete(Long id);
+    List<TierUpgradeRule> getAllRules();
 }
