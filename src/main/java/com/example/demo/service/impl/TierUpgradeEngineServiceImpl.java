@@ -1,8 +1,17 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.*;
+import com.example.demo.model.CustomerProfile;
+import com.example.demo.model.PurchaseRecord;
+import com.example.demo.model.TierHistoryRecord;
+import com.example.demo.model.TierUpgradeRule;
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.repository.*;
+
+import com.example.demo.repository.CustomerProfileRepository;
+import com.example.demo.repository.PurchaseRecordRepository;
+import com.example.demo.repository.VisitRecordRepository;
+import com.example.demo.repository.TierUpgradeRuleRepository;
+import com.example.demo.repository.TierHistoryRecordRepository;
+
 import com.example.demo.service.TierUpgradeEngineService;
 
 import org.springframework.stereotype.Service;
