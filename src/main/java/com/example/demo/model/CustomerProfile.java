@@ -21,7 +21,7 @@ public class CustomerProfile {
 
     public CustomerProfile() {}
 
-    // ---------- REQUIRED GETTERS / SETTERS ----------
+
 
     public Long getId() {
         return id;
