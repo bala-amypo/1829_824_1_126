@@ -14,10 +14,11 @@ public class TierUpgradeRule {
     private String toTier;
     private Double minSpend;
     private Integer minVisits;
-    private Boolean active;
+    private Boolean active = true;
 
-    public TierUpgradeRule() {
-    }
+    public TierUpgradeRule() {}
+
+    // ---------- REQUIRED GETTERS / SETTERS ----------
 
     public Long getId() {
         return id;

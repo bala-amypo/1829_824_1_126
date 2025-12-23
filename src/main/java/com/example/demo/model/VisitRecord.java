@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "visit_records")
@@ -10,11 +11,16 @@ public class VisitRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long customerId;
+    private LocalDate visitDate;
     private String channel;
 
-    public VisitRecord() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private CustomerProfile customer;
+
+    public VisitRecord() {}
+
+    // ---------- REQUIRED GETTERS / SETTERS ----------
 
     public Long getId() {
         return id;
@@ -24,12 +30,12 @@ public class VisitRecord {
         this.id = id;
     }
 
-    public Long getCustomerId() {
-        return customerId;
+    public LocalDate getVisitDate() {
+        return visitDate;
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+    public void setVisitDate(LocalDate visitDate) {
+        this.visitDate = visitDate;
     }
 
     public String getChannel() {
@@ -38,5 +44,13 @@ public class VisitRecord {
 
     public void setChannel(String channel) {
         this.channel = channel;
+    }
+
+    public CustomerProfile getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerProfile customer) {
+        this.customer = customer;
     }
 }

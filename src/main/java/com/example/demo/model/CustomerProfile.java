@@ -11,38 +11,17 @@ public class CustomerProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
     private String customerId;
-
     private String fullName;
-
-    @Column(unique = true)
     private String email;
-
-    @Column(unique = true)
     private String phone;
-
     private String currentTier;
-
-    private Boolean active = true;
-
+    private boolean active = true;
     private LocalDateTime createdAt;
 
-    public CustomerProfile() {
-    }
+    public CustomerProfile() {}
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        if (this.currentTier == null) {
-            this.currentTier = "BRONZE";
-        }
-        if (this.active == null) {
-            this.active = true;
-        }
-    }
-
-    // ===== GETTERS & SETTERS =====
+    // ---------- REQUIRED GETTERS / SETTERS ----------
 
     public Long getId() {
         return id;
@@ -92,11 +71,11 @@ public class CustomerProfile {
         this.currentTier = currentTier;
     }
 
-    public Boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
