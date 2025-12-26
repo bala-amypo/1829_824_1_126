@@ -1,22 +1,12 @@
-// package com.example.demo.repository;
-
-// import com.example.demo.model.CustomerProfile;
-// import org.springframework.data.jpa.repository.JpaRepository;
-
-// import java.util.Optional;
-
-// public interface CustomerProfileRepository extends JpaRepository<CustomerProfile, Long> {
-
-//     Optional<CustomerProfile> findByCustomerId(String customerId);
-
-//     Optional<CustomerProfile> findByEmail(String email);
-// }
-
-
 package com.example.demo.repository;
 
-public interface CustomerProfileRepository {
-    // Dummy repository
-    // Not used in test cases
-}
+import com.example.demo.model.CustomerProfile;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
+@Repository
+public interface CustomerProfileRepository extends JpaRepository<CustomerProfile, Long> {
+    Optional<CustomerProfile> findByCustomerId(String customerId);
+    Optional<CustomerProfile> findByEmail(String email);
+}
