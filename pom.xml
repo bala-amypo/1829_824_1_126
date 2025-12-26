@@ -23,13 +23,13 @@
 
     <dependencies>
 
-        <!-- Web (required for controllers to compile) -->
+        <!-- Required so controllers compile -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- TestNG (MANDATORY) -->
+        <!-- TESTNG (MANDATORY FOR PORTAL TESTS) -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -37,12 +37,13 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Spring Boot test (kept minimal) -->
+        <!-- DO NOT REMOVE: Needed for assertions & test utilities -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
             <exclusions>
+                <!-- Prevent JUnit Vintage from interfering -->
                 <exclusion>
                     <groupId>org.junit.vintage</groupId>
                     <artifactId>junit-vintage-engine</artifactId>
@@ -55,22 +56,25 @@
     <build>
         <plugins>
 
-            <!-- Spring Boot -->
+            <!-- Spring Boot plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!-- TESTNG CONFIGURATION (THIS FIXES 70 FAILURES) -->
+            <!-- FORCE MAVEN TO RUN TESTNG -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
                     <useModulePath>false</useModulePath>
+
+                    <!-- THIS IS THE KEY -->
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+
                 </configuration>
             </plugin>
 
