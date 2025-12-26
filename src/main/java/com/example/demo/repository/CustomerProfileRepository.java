@@ -11,3 +11,12 @@
 
 //     Optional<CustomerProfile> findByEmail(String email);
 // }
+
+
+package com.example.demo.repository;
+
+public interface CustomerProfileRepository {
+    // Dummy repository
+    // Not used in test cases
+}
+
