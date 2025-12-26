@@ -1,74 +1,43 @@
-// package com.example.demo.service.impl;
-
-// import com.example.demo.model.VisitRecord;
-// import com.example.demo.repository.VisitRecordRepository;
-// import com.example.demo.service.VisitRecordService;
-// import org.springframework.stereotype.Service;
-
-// import java.util.List;
-// import java.util.NoSuchElementException;
-
-// @Service
-// public class VisitRecordServiceImpl implements VisitRecordService {
-
-//     private final VisitRecordRepository visitRecordRepository;
-
-//     public VisitRecordServiceImpl(VisitRecordRepository visitRecordRepository) {
-//         this.visitRecordRepository = visitRecordRepository;
-//     }
-
-//     @Override
-//     public VisitRecord recordVisit(VisitRecord visit) {
-//         return visitRecordRepository.save(visit);
-//     }
-
-//     @Override
-//     public VisitRecord getVisitById(Long id) {
-//         return visitRecordRepository.findById(id)
-//                 .orElseThrow(() -> new NoSuchElementException("Visit record not found"));
-//     }
-
-//     @Override
-//     public List<VisitRecord> getVisitsByCustomer(Long customerId) {
-//         return visitRecordRepository.findByCustomerId(customerId);
-//     }
-
-//     @Override
-//     public List<VisitRecord> getAllVisits() {
-//         return visitRecordRepository.findAll();
-//     }
-// }
-
-
 package com.example.demo.service.impl;
 
 import com.example.demo.model.VisitRecord;
+import com.example.demo.repository.VisitRecordRepository;
 import com.example.demo.service.VisitRecordService;
 import org.springframework.stereotype.Service;
-
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class VisitRecordServiceImpl implements VisitRecordService {
-
+    
+    private final VisitRecordRepository visitRecordRepository;
+    private static final List<String> VALID_CHANNELS = Arrays.asList("STORE", "APP", "WEB");
+    
+    public VisitRecordServiceImpl(VisitRecordRepository visitRecordRepository) {
+        this.visitRecordRepository = visitRecordRepository;
+    }
+    
     @Override
     public VisitRecord recordVisit(VisitRecord visit) {
-        throw new UnsupportedOperationException("Not used in test scope");
+        if (visit.getChannel() == null || !VALID_CHANNELS.contains(visit.getChannel())) {
+            throw new IllegalArgumentException("Invalid channel");
+        }
+        return visitRecordRepository.save(visit);
     }
-
-    @Override
-    public Optional<VisitRecord> getVisitById(Long id) {
-        return Optional.empty();
-    }
-
+    
     @Override
     public List<VisitRecord> getVisitsByCustomer(Long customerId) {
-        return List.of();
+        return visitRecordRepository.findByCustomerId(customerId);
     }
-
+    
     @Override
     public List<VisitRecord> getAllVisits() {
-        return List.of();
+        return visitRecordRepository.findAll();
+    }
+    
+    @Override
+    public Optional<VisitRecord> getVisitById(Long id) {
+        return visitRecordRepository.findById(id);
     }
 }
