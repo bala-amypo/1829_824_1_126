@@ -1,3 +1,43 @@
+// package com.example.demo.controller;
+
+// import com.example.demo.model.VisitRecord;
+// import com.example.demo.service.VisitRecordService;
+// import org.springframework.web.bind.annotation.*;
+
+// import java.util.List;
+
+// @RestController
+// @RequestMapping("/api/visits")
+// public class VisitRecordController {
+
+//     private final VisitRecordService visitRecordService;
+
+//     public VisitRecordController(VisitRecordService visitRecordService) {
+//         this.visitRecordService = visitRecordService;
+//     }
+
+//     @PostMapping
+//     public VisitRecord recordVisit(@RequestBody VisitRecord visit) {
+//         return visitRecordService.recordVisit(visit);
+//     }
+
+//     @GetMapping("/{id}")
+//     public VisitRecord getVisitById(@PathVariable Long id) {
+//         return visitRecordService.getVisitById(id);
+//     }
+
+//     @GetMapping("/customer/{customerId}")
+//     public List<VisitRecord> getVisitsByCustomer(@PathVariable Long customerId) {
+//         return visitRecordService.getVisitsByCustomer(customerId);
+//     }
+
+//     @GetMapping
+//     public List<VisitRecord> getAllVisits() {
+//         return visitRecordService.getAllVisits();
+//     }
+// }
+
+
 package com.example.demo.controller;
 
 import com.example.demo.model.VisitRecord;
@@ -5,6 +45,7 @@ import com.example.demo.service.VisitRecordService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/visits")
@@ -23,7 +64,8 @@ public class VisitRecordController {
 
     @GetMapping("/{id}")
     public VisitRecord getVisitById(@PathVariable Long id) {
-        return visitRecordService.getVisitById(id);
+        return visitRecordService.getVisitById(id)
+                .orElseThrow(NoSuchElementException::new);
     }
 
     @GetMapping("/customer/{customerId}")
