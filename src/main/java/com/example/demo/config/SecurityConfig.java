@@ -43,6 +43,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/customers").permitAll()
                 .requestMatchers("/api/visits").permitAll()
                 .requestMatchers("/api/tier-engine").permitAll()
+                .requestMatchers("/api/purchases").permitAll()
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/status").permitAll()
                 .requestMatchers("/api/**").authenticated()
